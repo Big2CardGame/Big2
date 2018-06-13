@@ -31,16 +31,35 @@
         'Diamonds': 3
     };
 
+    const hands = {
+        'Straight': 0,
+        'Flush': 1,
+        'Full House': 2,
+        'Quads': 3,
+        'Straight Flush': 4,
+        'Royal Flush': 5
+    };
+
     function isValidPair(cards) {
         return cards[0].rank === cards[1].rank;
     }
 
+    // function handIsValid(cards) {
+    //    const type = cards.length;
+    //    switch(type) {
+    //    case handTypes.PAIR:
+    //        return isValidPair(cards);
+    //    default:
+    //        return true;
+    //    }
+    //}
+
     function handIsValid(cards) {
         const type = cards.length;
         switch(type) {
-        case handTypes.PAIR:
+        if type = pair:
             return isValidPair(cards);
-        default:
+        else
             return true;
         }
     }
