@@ -1,0 +1,9 @@
+<li>
+	{{name}}
+
+	<button class="play-move" data-id="{{id}}" data-play-move="{{beat}}">
+		{{#if beaten}}Cannot make that move!{{else}}Play{{/if}}
+	</button>
+
+	<button class="pass-move" data-id="{{this.id}}">Pass</button>
+</li>
