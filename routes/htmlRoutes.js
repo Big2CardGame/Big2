@@ -1,5 +1,10 @@
+var express = require('express');
+var app = express();
+
+// require path to send specific files for web pages
 var path = require('path');
 
+// export routes for the server
 module.exports = (app) => {
     app.get('/', (req,res) => {
         res.sendFile(path.join(__dirname, "../public/home.html"));
