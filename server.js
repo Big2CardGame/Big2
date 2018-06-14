@@ -5,7 +5,7 @@
 // *** Dependencies
 // =============================================================
 var express = require("express");
-// var bodyParser = require("body-parser");
+var bodyParser = require("body-parser");
 
 // Sets up the Express App
 // =============================================================
@@ -18,17 +18,22 @@ var db = require("./models");
 // Sets up the Express app to handle data parsing
 
 // parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 // Static directory
 app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/api-routes.js")(app);
-require("./routes/html-routes.js")(app);
+// could be changed so all js files in the routes folder will use express.Router
+// then below would change to 
+// app.use("url", "route from ./routes/jsFile")
+// ie
+// app.use("/", "./routes/htmlRoutes")
+require("./routes/apiRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
