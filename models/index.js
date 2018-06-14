@@ -1,91 +1,127 @@
-(function() {
-    'use strict';
+// Initialize variables
+var bigTwoArray = [], player1Hand = [], player2Hand = [], player3Hand = [], player4Hand =[];
+var player1Deck = '', player2Deck= '', player3Deck = '', player4Deck= '', player1Card = '', player2Card = '', player3Card = '', player4Card = '';
 
-    const handTypes = {
-        SINGLE: 1,
-        PAIR: 2,
-        TRIPS: 3,
-        FIVE_CARD_TRICK: 5
+var playing = false;
+
+// Require fetch start shuffle
+var fetch = require('isomorphic-fetch');
+
+// Makes call to DECK OF CARDS API for deck to be shuffled; sets rankings for returned array of cards and 'deals' cards, separating them into four hands
+var shuffle = function() {
+    return function(dispatch) {
+        var url = '/shuffle';
+        var request = {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            };
+        return fetch(url, request)
+        .then(function(response) {
+            if (response.status < 200 || response.status >= 300) {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+        	var hands = data.hands;
+        	var firstMove = data.firstMove;
+            return dispatch(
+                shuffleSuccess(hands, firstMove)
+            );
+        })
+        .catch(function(error) {
+            return dispatch(
+                shuffleError(error)
+            );
+        });
+    }
+};
+
+// Passes 'hands' array of four arrays containing each player's 'hand' for a single game
+var SHUFFLE_SUCCESS = 'SHUFFLE_SUCCESS';
+var shuffleSuccess = function(hands, firstMove) {
+    return {
+        type: SHUFFLE_SUCCESS,
+        hands: hands,
+        firstMove: firstMove
     };
+};
 
-    const ranks = {
-        '3': 0,
-        '4': 1,
-        '5': 2,
-        '6': 3,
-        '7': 4,
-        '8': 5,
-        '9': 6,
-        '10': 7,
-        'J': 8,
-        'Q': 9,
-        'K': 10,
-        'A': 11,
-        '2': 12
+var SHUFFLE_ERROR = 'SHUFFLE_ERROR';
+var shuffleError = function(error) {
+    return {
+        type: SHUFFLE_ERROR,
+        error: error
     };
+};
 
-    const suits = {
-        'Clubs': 0,
-        'Spades': 1,
-        'Hearts': 2,
-        'Diamonds': 3
+// Sets initial state for each game; increments the dealer for the game
+var START_GAME = 'START_GAME';
+var startGame = function() {
+    return {
+        type: START_GAME
     };
+};
 
-    function isValidPair(cards) {
-        return cards[0].rank === cards[1].rank;
-    }
+// Opens/closes players hand to see cards;
+var SHOW = 'SHOW';
+var show = function(hand) {
+	return {
+		type: SHOW,
+		hand: hand
+	};
+};
 
-    function handIsValid(cards) {
-        const type = cards.length;
-        switch(type) {
-        case handTypes.PAIR:
-            return isValidPair(cards);
-        default:
-            return true;
-        }
-    }
+// Select/unselect card from hand;
+var SELECT = 'SELECT';
+var select = function(code, hand) {
+	return {
+		type: SELECT,
+		code: code,
+		hand: hand
+	};
+};
 
-    function isSingleGreater(card1, card2) {
-        return ranks[card2.rank] > ranks[card1.rank] || suits[card2.suit] > suits[card1.suit];
-    }
-
-    function isGreater(currentState, newHand) {
-        const type = currentState.cards.length;
-        switch(type) {
-        case handTypes.SINGLE:
-            return isSingleGreater(currentState.cards[0], newHand.cards[0]);
-        default:
-            return false;
-        }
-    }
-
-    function BigTwo(config) {
-
-    }
-
-    BigTwo.compare = (currentState, newHand) => {
-        const validationFailures = {
-            invalid: false,
-            value: false,
-            type: false
-        };
-
-        if(!handIsValid(newHand.cards)) {
-            validationFailures.invalid = true;
-        } else if(currentState.cards.length !== newHand.cards.length) {
-            validationFailures.type = true;
-        } else if(!isGreater(currentState, newHand)){
-            validationFailures.value = true;
-        }
-
-        const validMove = Object.values(validationFailures).every(v => !v);
-
-        return validMove || validationFailures;
+var PASS_TURN = 'PASS_TURN';
+var passTurn = function() {
+    return {
+        type: PASS_TURN,
     };
+};
 
-    if(typeof module !== 'undefined') {
-        module.exports = BigTwo;
-    } else {
-        window.BigTwo = BigTwo;
-    }
-})();
+var PLAY_CARDS = 'PLAY_CARDS';
+var playCards = function(cards) {
+    return {
+        type: PLAY_CARDS,
+        cards: cards
+    };
+};
+
+/*----------- EXPORTS ----------*/
+exports.START_GAME = START_GAME;
+exports.startGame = startGame;
+
+exports.SHOW = SHOW;
+exports.show = show;
+
+exports.SELECT = SELECT;
+exports.select = select;
+
+exports.PLAY_CARDS = PLAY_CARDS;
+exports.playCards = playCards;
+
+exports.PASS_TURN = PASS_TURN;
+exports.passTurn = passTurn;
+
+exports.shuffle = shuffle;
+exports.SHUFFLE_SUCCESS = SHUFFLE_SUCCESS;
+exports.shuffleSuccess = shuffleSuccess;
+exports.SHUFFLE_ERROR = SHUFFLE_ERROR;
+exports.shuffleError = shuffleError;
