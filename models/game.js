@@ -369,9 +369,9 @@ function preloadImages() {
 	}
 }
 
-//function isValidPair(cards) {
+/* function isValidPair(cards) {
     return cards[0].rank === cards[1].rank;
-}
+} */ // looked like you were trying to comment this out -MR
 
 function handIsValid(cards) {
     const type = cards.length;
