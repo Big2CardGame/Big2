@@ -62,7 +62,7 @@ var shuffleError = function(error) {
     };
 };
 
-// Sets initial state for each game; increments the dealer for the game
+// Sets initial state for each game
 var START_GAME = 'START_GAME';
 var startGame = function() {
     return {
@@ -70,7 +70,7 @@ var startGame = function() {
     };
 };
 
-// Opens/closes players hand to see cards;
+// Opens/closes players hand to see cards
 var SHOW = 'SHOW';
 var show = function(hand) {
 	return {
@@ -79,7 +79,7 @@ var show = function(hand) {
 	};
 };
 
-// Select/unselect card from hand;
+// Select/unselect card from hand
 var SELECT = 'SELECT';
 var select = function(code, hand) {
 	return {

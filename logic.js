@@ -13,55 +13,55 @@
         '3c': 0,
         '3s': 1,
         '3h': 2,
-        '3d': 3,
+        '3d': 3.1,
         '4c': 4,
         '4s': 5,
         '4h': 6,
-        '4d': 7,
+        '4d': 7.1,
         '5c': 8,
         '5s': 9,
         '5h': 10,
-        '5d': 11,
+        '5d': 11.1,
         '6c': 12,
         '6s': 13,
         '6h': 14,
-        '6d': 15,
+        '6d': 15.1,
         '7c': 16,
         '7s': 17,
         '7h': 18,
-        '7d': 19,
+        '7d': 19.1,
         '8c': 20,
         '8s': 21,
         '8h': 22,
-        '8d': 23,
+        '8d': 23.1,
         '9c': 24,
         '9s': 25,
         '9h': 26,
-        '9d': 27,
+        '9d': 27.1,
         '10c': 28,
         '10s': 29,
         '10h': 30,
-        '10d': 31,
+        '10d': 31.1,
         'Jc': 32,
         'Js': 33,
         'Jh': 34,
-        'Jd': 35,
+        'Jd': 35.1,
         'Qc': 36,
         'Qs': 37,
         'Qh': 38,
-        'Qd': 39,
+        'Qd': 39.1,
         'Kc': 40,
         'Ks': 41,
         'Kh': 42,
-        'Kd': 43,
+        'Kd': 43.1,
         'Ac': 44,
         'As': 45,
         'Ah': 46,
-        'Ad': 47,
+        'Ad': 47.1,
         '2c': 48,
         '2s': 49,
         '2h': 50,
-        '2d': 51
+        '2d': 51.1
     };
 
     // Ranks value of suits from lowest to highest
@@ -84,24 +84,53 @@
 
     // Compares if a single card beats another single card
     function isSingleGreater(card1, card2) {
-        return ranks[card2.rank] > ranks[card1.rank];
+        if (ranks[card1.rank] > ranks[card2.rank]) {
+            return true;    
+        } else {
+            return false;
+        }
     }
 
     // Compares if a pair beats another pair where pair1 = card1 + card2 && pair2 = card3 +card4
     function isPairGreater(pair1, pair2) {
-        return ranks[card1.rank] + ranks[card2.rank] > ranks[card3.rank] + ranks[card4.rank];
-    // If combined value of pairs are equal (ie: 4c4d = 4s4h), then suit value is next tiebreaker
-
+        if (ranks[card1.rank] + ranks[card2.rank] > ranks[card3.rank] + ranks[card4.rank]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Compares if a trips beats another trips where trips1 = card1 + card2 + card3 && trips2 = card4 + card5 + card6
     function isTripsGreater(trips1, trips2) {
-        return ranks[card1.rank] + ranks[card2.rank] + ranks[card3.rank]> ranks[card4.rank] + ranks[card5.rank] + ranks[card6.rank];  
+        if (ranks[card1.rank] + ranks[card2.rank] + ranks[card3.rank] > ranks[card4.rank] + ranks[card5.rank] + ranks[card6.rank]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    // Compares if a hand beats another hand
+    // Compares if a hand beats another hand if both hands are different
     function isHandGreater(hand1, hand2) {
-        return ranks[hand1.rank] > ranks[hand2.rank];
+        if (hands[hand1.hand] > hands[hand2.rank]) {
+            return true;
+        } else if (hands[hand1.hand] = hands[hand2.rank]) {
+            // Make it compare between same hands
+            return function (isSameHandGreater);
+        } else {
+            return false;
+        }
+    }   
+    
+    function isSameHandGreater(hand1, hand2) {
+        if (hands[hand1.hand] > hands[hand2.rank]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
     // If hands are both straights, then straight to highest card wins
     // If both straights are to the same number, then higher suit between final card in straight wins
 
@@ -115,7 +144,6 @@
 
     // If hands are both royal flushes (AKQJ10), then higher suit wins  
         
-    }
     
     function startGame(ranks) {
         if (rank = 0) {
