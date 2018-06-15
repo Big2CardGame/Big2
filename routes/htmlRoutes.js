@@ -7,7 +7,7 @@ var path = require('path');
 // export routes for the server
 module.exports = (app) => {
     app.get('/', (req,res) => {
-        res.sendFile(path.join(__dirname, "../public/home.html"));
+        res.sendFile(path.join(__dirname, "../public/index.html"));
     })
 
     // perhaps there will be a second route for a help page? dummy route here.
