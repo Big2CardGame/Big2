@@ -1,48 +1,38 @@
-/*function to fill an array with 52 numbers
-function fillArray() {
-	var deck = [];
-	for (var i = 0; i < 52; i++)
-		deck[i] = i;
-
-	shuffle(deck);
-	splitCards(deck);
-}
-
-//function to shuffle deck of cards. 
-function shuffle(deck) {
-    for(var j, x, i = deck.length; i; j = Math.floor(Math.random() * i), x = deck[--i], deck[i] = deck[j], deck[j] = x);
-    return deck;
-}
-
-*/
-
-//function to split shuffled deck in half
+// Split shuffled deck into four hands of 13 cards
 function splitCards(deck) {
 	var i = 0;
 
-	//push a card to each "hand" array
+	// Push cards to each "hand" array
 	while (i != deck.length) {
-		playerHand.push(deck[i]);
-		compHand.push(deck[(i+1)]);
-		i+=2;
+		player1Hand.push(deck[i]);
+		player2Hand.push(deck[(i+1)]);
+		player3Hand.push(deck[(i+2)]);
+		player4Hand.push(deck[(i+3)]);
+		i+=4;
 	}
 
-	$('.playCount').html("Player cards: " + playerHand.length);
-	$('.compCount').html("Computer cards: " + compHand.length);
+	$('.player1Count').html("Player 1 Cards: " + player1Hand.length);
+	$('.player2Count').html("Player 2 Cards: " + player2Hand.length);
+	$('.player3Count').html("Player 3 Cards: " + player3Hand.length);
+	$('.player4Count').html("Player 4 Cards: " + player4Hand.length);
 	$('.result').html("");
 }
 
-//function to take top card off of each deck and put into card slot
+// Deals cards
 function deal() {
 	
 	//if a card is already in the slot, removes card. Also shows "New Game" button if hidden
-	$('.playerCard').html("");
-	$('.compCard').html("");
+	$('.player1Card').html("");
+	$('.player2Card').html("");
+	$('.player3Card').html("");
+	$('.player4Card').html("");
 	$('.newGame').show();
 
 	//sets current card for each hand
-	playerCard = playerHand[0];
-	compCard = compHand[0];
+	player1Card = player1Hand[0];
+	player2Card = player2Hand[0];
+	player3Card = player3Hand[0];
+	player4Card = player4Hand[0];
 
 	//creates an image element for the current card in each hand
 	var img = document.createElement('img');
@@ -60,106 +50,8 @@ function deal() {
 }
 
 
-//function to compare both face up cards (or current cards)
-function compare(player, comp) {
-	
-	//if player's card value is higher than the computer's card value, player wins
-	if((player % 13) > (comp % 13)) {
-	
-		//updates result div of the game board
-		$('.result').html("Player wins!").animateCss("flipInX");
-		
-		//pushes current cards from each hand to the back of the player's hand
-		playerHand.push(comp);
-		playerHand.push(player);
-
-		//removes current card from the front of each deck
-		playerHand.shift();
-		compHand.shift();
-
-		setTimeout(function() {
-			moveCards('player');
-		}, 1500);
-
-		//update card counts and check for a winner
-		updateCount();
-		checkWin();
-	}
-
-	//if computer's card value is higher than the player's card value, computer wins
-	else if ((player % 13) < (comp % 13)) {
-		
-		//update the results div of the game table
-		$('.result').html("Computer wins!").animateCss("flipInX");
-		
-		//pushes current cards from each hand to the back of the computer's hand
-		compHand.push(player);
-		compHand.push(comp);
-
-		//removes current card from the front of each deck
-		compHand.shift();
-		playerHand.shift();
-
-		setTimeout(function() {
-			moveCards('comp');
-		}, 1500);
-
-		//update card counts and check for a winner
-		updateCount();
-		checkWin();
-	}
-
-	//if player's current card value is the same as the computer's current card value a "War" (tie) occurs
-	else if ((player % 13) === (comp % 13))
-		war();
-}
-
-//function to move cards to a winners deck (animation)
-function moveCards(winner) {
-
-	if (winner == "player") {
-		console.log("moving left");
-		$(".playerCard img").css('position', 'relative').animate({ left: '-2000px' }, function() { $(this).hide(); });
-		$(".compCard img").css('position', 'relative').animate({ left: '-2000px' }, function() { $(this).hide(); });
-	}
-	else if (winner == "comp") {
-		console.log("moving right");
-		$(".playerCard img").css('position', 'relative').animate({ left: '2000px' }, function() { $(this).hide(); });
-		$(".compCard img").css('position', 'relative').animate({ left: '2000px' }, function() { $(this).hide(); });
-	}
-	else if (winner == "playerWar") {
-		$("#warArea img").css("position", "relative").animate({ left: '-2000px' }, function() { $("#warArea img").hide(); });
-	}
-	else if (winner == "compWar") {
-		$("#warArea img").css("position", "relative").animate({ left: '2000px' }, function() { $("#warArea img").hide(); });
-	}
-}
-
-
-//function to handle "war" instances or "ties"
-function war() {
-	
-	//show "war" animation
-	$('#warAnimation').css("display", "table");
-
-	$("#warText").animateCss("lightSpeedIn", function() {
-		$("#warText").animateCss("lightSpeedOut");
-	});
-
-	//keeps animation going for 1 second, then removes the 'war' class and hides the animation
-	setTimeout(function() {
-		$('#warAnimation').hide();
-		$("#warText").removeClass("lightSpeedOut");
-
-		$("#warArea").show();
-		
-		//calls function to draw cards from each deck
-		warToArray();
-	}, 2000);
-
-	
-}
-
+// Compare 
+function compare(player, comp) {	
 
 //function to take cards from each deck and put into "war" array
 function warToArray() {
@@ -382,49 +274,3 @@ function handIsValid(cards) {
         return true;
     }
 }
-
-// Comparing if a single card beats another single card
-/* function isSingleGreater(card1, card2) {
-    return ranks[card2.rank] > ranks[card1.rank] || suits[card2.suit] > suits[card1.suit];
-}
-
-function isGreater(currentState, newHand) {
-    const type = currentState.cards.length;
-    switch(type) {
-    case handTypes.SINGLE:
-        return isSingleGreater(currentState.cards[0], newHand.cards[0]);
-    default:
-        return false;
-    }
-}
-
-function BigTwo(config) {
-
-}
-
-BigTwo.compare = (currentState, newHand) => {
-    const validationFailures = {
-        invalid: false,
-        value: false,
-        type: false
-    };
-
-    if(!handIsValid(newHand.cards)) {
-        validationFailures.invalid = true;
-    } else if(currentState.cards.length !== newHand.cards.length) {
-        validationFailures.type = true;
-    } else if(!isGreater(currentState, newHand)){
-        validationFailures.value = true;
-    }
-
-    const validMove = Object.values(validationFailures).every(v => !v);
-
-    return validMove || validationFailures;
-};
-
-if(typeof module !== 'undefined') {
-    module.exports = BigTwo;
-} else {
-    window.BigTwo = BigTwo;
-}
-})(); */
