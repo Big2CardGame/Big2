@@ -109,42 +109,57 @@ function isTripsGreater(trips1, trips2) {
 
 // Compares if a straight beats another straight
 function isStraightGreater(straight1, straight2) {
-    if (hands[hand1.hand] > hands[hand2.rank]) {
+    if (hands[card1.hand] > hands[card6.rank]) {
         return true;
     } else {
         return false;
     }
 }
 
-/*function isSameHandGreater(hand1, hand2) {
-    if (hands[hand1.hand] = 0) {
-        // highest card in straight wins
+// Compares if a flush beats another flush
+function isFlushGreater(flush1, flush2) {
+    if (hands[card1.hand] > hands[card6.rank]) {
         return true;
-    } else if (hands[hand1.hand] = 1) {
-        // Make it compare between same hands
-        return function isSameHandGreater();
-    } else if (hands[hand1.hand] = hands[hand2.rank]) {
-        // Make it compare between same hands
-        return function isSameHandGreater();
     } else {
         return false;
     }
 }
 
+// Compares if a fullhouse beats another fullhouse
+function isFullhouseGreater(fullhouse1, fullhouse2) {
+    if (hands[card1.hand] > hands[card6.rank]) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
+// Compares if a quads beats another quads
+function isQuadsGreater(quads1, quads2) {
+    if (hands[card1.hand] > hands[card6.rank]) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-// If hands are both straights, then straight to highest card wins
-// If both straights are to the same number, then higher suit between final card in straight wins
+// Compares if a quads beats another quads
+function isStraightflushGreater(straightflush1, straightflush2) {
+    if (hands[card1.hand] > hands[card6.rank]) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-// If hands are both flushes, then flush with higher suit wins
-// If both flushes are the same suit, then highest card in flush wins
-
-// If hands are both quads, then highest non-single card wins
-
-// If hands are both straight flushes, then higher suit wins
-// If both straight flushes are the same suit, then highest card in straight flush wins
-
-// If hands are both royal flushes (AKQJ10), then higher suit wins*/
+// Compares if a quads beats another quads
+function isRoyalflushGreater(royalflush1, royalflush2) {
+    if (hands[card1.hand] > hands[card6.rank]) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function makeSureTrue(value, message) {
     if (!value) {
