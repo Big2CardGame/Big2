@@ -23,8 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Static directory
+// need this in order for css files/ js files to work
 app.use(express.static(path.join(__dirname, 'public')));
-
 // Routes
 // =============================================================
 // could be changed so all js files in the routes folder will use express.Router
