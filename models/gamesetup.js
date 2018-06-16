@@ -25,7 +25,7 @@ var oppCardShift = 25;
 var finishedDealing = 0;
 var passCounter = 0;
 var backOfCard = new Image();
-backOfCard.src = "cardImages/cardBack.png";
+backOfCard.src = "public/img/cardBack.png";
 var count = 0;
 var plyrsGo;
 var dealFirst = 1;
@@ -198,7 +198,7 @@ function drawPrevHand() {
 	for(var i=0; i<previousHand.length; i++) {
 		cardNoId = "prev"+(i+1);
 		card = document.getElementById(cardNoId);
-		card.innerHTML = ("<img src='cardImages/"+String(previousHand[i])+".png' width='"+String(cardWidth)+"' height='"+String(cardHeight)+"'/>");
+		card.innerHTML = ("<img src='public/img/"+String(previousHand[i])+".png' width='"+String(cardWidth)+"' height='"+String(cardHeight)+"'/>");
 		card.style.width = String(cardWidth)+"px";
 		card.style.height = String(cardHeight) + "px";
 		card.style.left = String(prevHandPos + i*cardShift)+"px";
@@ -217,7 +217,7 @@ function drawPlayersHand() {
 	for(var i=0; i<playersHand.length; i++) {
 		cardNoId = "pc"+(i+1);
 		card = document.getElementById(cardNoId);
-		card.innerHTML = ("<img src='cardImages/"+String(playersHand[i])+".png' width='"+String(cardWidth)+"' height='"+String(cardHeight)+"'/>");
+		card.innerHTML = ("<img src='public/img/"+String(playersHand[i])+".png' width='"+String(cardWidth)+"' height='"+String(cardHeight)+"'/>");
 		card.style.left = String(handPos + i*cardShift)+"px";
 		card.style.width = String(cardWidth)+"px";
 		card.style.height = String(cardHeight) + "px";
