@@ -1,4 +1,4 @@
-
+/*
 
 //initialize variables
 var warArray = [], playerHand = [], compHand = [];
