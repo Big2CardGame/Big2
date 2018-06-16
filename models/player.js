@@ -1,4 +1,4 @@
-// This code defines a player for the game_db
+/*// This code defines a player for the game_db
 // currently, the player model has a row for each card in the player's hand,
 // in each row, there is a column for the value and suite of a card
 // for example, the 3 of clubs would have value 3, suite C.
