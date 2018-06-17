@@ -155,12 +155,16 @@ function shuffleAndDeal() {
 	//do a "fisher-yates" shuffle on deck
 	shuffle(deck);
 	//Assign random hands to players
+	// NEED TO ADD CODE THAT PUSHES THESE DECKS TO THE DATABASE!
 	for(var i=0; i<13; i++) {
 		playersHand.push(deck[i]);
 		oppHand1.push(deck[i+13]);
 		oppHand2.push(deck[i+26]);
 		oppHand3.push(deck[i+39]);
 	}
+
+	// first, take a hand JSON.stringify it
+	//JSON.stringify(playersHand)
 }
 
 function shuffle(array) {

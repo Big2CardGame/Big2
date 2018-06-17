@@ -5,18 +5,45 @@ var app = express();
 var db = require("../models");
 
 // export routes for the server
+// these routes are used to communicate with the database!
+// The url created in the app.get / app.post will be used in the JS file 
+// $.ajax({
+    //method: POST,
+  //  url: "api/etcetc"
+//})
 module.exports = (app) => {
-    // post requests needed for the table
-
-    // clubs spades hearts diamonds
-    // first card is a 3 of clubs
-    // use server side validation to keep the flow of the game/
-    // random place for game notes lol
-    app.get("/game:id/player:number/", (res,req) => {
-        // code here to populate players hands with Deck of Cards api
+    // get request needed for player
+    app.get("/api/allPlayers", (res,req) => {
+        db.Player.findAll({})
+        .then(players => {
+            res.json(JSON.parse(players));
+        })
     })
-
-    app.post("/game:id/table", (res,req) => {
-        // code here to "post" a player move to the "table"
+    // get request for board
+    app.get("/api/inPlay", (res,req) => {
+        db.Board.findAll({})
+        .then(board => {
+            res.json(JSON.parse(board))
+        })
     })
+    // post request for player table
+    app.post("/api/player", (res,req) => {
+        db.Player.create({
+            hand: JSON.stringify(req.body.hand)
+        })
+        .then(player => {
+            res.json(player)
+        })
+    })
+    // post request for board table 
+    app.post("/api/board", (res,req) => {
+        // code here to "post" a player move to the "board"
+        db.Board.create({
+            inPlay: JSON.stringify(req.body.inPlay)
+        })
+        .then(board => {
+            res.json(board)
+        })
+    })
+    //app.put ... update?
 }
