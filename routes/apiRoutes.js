@@ -28,11 +28,12 @@ module.exports = (app) => {
     })
     // post request for player table
     app.post("/api/player", (res,req) => {
+        console.log(req.body);
         db.Player.create({
             hand: JSON.stringify(req.body.hand)
         })
         .then(player => {
-            res.json(player)
+            res.json(player);
         })
     })
     // post request for board table 

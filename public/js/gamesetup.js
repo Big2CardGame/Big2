@@ -58,6 +58,7 @@ function newGame() {
 	playersHand=[]; oppHand1=[]; oppHand2 = []; oppHand3 = []; selectedHand = [];
 	CGScore1 =0; CGScore2=0; CGScore3=0; CGScore4=0;
 	shuffleAndDeal();
+	console.log("check to see if playersHand is in the game_db");
 	initDraw();
 	firstMove(); //first move is done automatically. Determine who has the 3 of clubs and plays it.
 	drawPlayersHand();
@@ -162,9 +163,10 @@ function shuffleAndDeal() {
 		oppHand2.push(deck[i+26]);
 		oppHand3.push(deck[i+39]);
 	}
-
+	console.log(playersHand);
 	// first, take a hand JSON.stringify it
 	//JSON.stringify(playersHand)
+	handToDb(playersHand);
 }
 
 function shuffle(array) {
@@ -681,3 +683,4 @@ function updateScores() {
 	elem4 = document.getElementById("player4");
 	elem4.innerHTML = ("P4");
 }
+
