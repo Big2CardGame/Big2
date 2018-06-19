@@ -1,19 +1,196 @@
 <html>
 <head>
 <title>Pusoy Dos Beta</title>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="./css/style.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+<style>
+body {
+background: url('green-background.jpg') no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+ #gameCanvas {
+max-width: 100% !important;
+}
+</style>
 <script src="./js/AI.js"></script>
 <script src="./js/gamesetup.js"></script>
 
 </head>
 
+
 <body onLoad="init();">
 
+
+
+<div class="container">
+
+<div class="container">
+  <!-- Button to Open the Modal -->
+
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">How to Play Pusoy Dos</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+<p><strong>What is Pusoy Dos?</strong></p></blockquote>
+<p>Pusoy Dos is a turn based card game played with up 4 players (each dealt 13 cards) with the object to drop all of your cards first. The Card Ranking also known as the Card Order determines what set of cards can defeat another.</p>
+<p><strong>How to Win</strong></p></blockquote>
+<p>The goal of Pusoy Dos is to drop all 13 of your cards first.</p>
+<p>&nbsp;</p>
+<p><strong>Card Order</strong></p>
+<p>The cards are the same types of hands as found in poker, as in the combinations of cards listed below:</p>
+<blockquote><p><strong>Singles</strong></p></blockquote>
+<p>The lowest single the 3 of club’s.<br>
+<img class="alignnone size-full wp-image-34" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-3.png" alt="pusoy-dos-clubs-3" width="40" height="50"></p>
+<p>The highest single is 2 of diamond’s.<br>
+<img class="alignnone size-full wp-image-46" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-2.png" alt="pusoy-dos-diamonds-2" width="40" height="50"></p>
+<blockquote><p><strong>Doubles (Pairs a.k.a. two-of-a-kind)</strong></p></blockquote>
+<p>The lowest double is a pair 3’s.<br>
+<img class="size-full wp-image-34 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-3.png" alt="pusoy-dos-clubs-3" width="40" height="50"><img class="size-full wp-image-73 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-spades-3.png" alt="pusoy-dos-spades-3" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>What if two players both have a pair of 3’s, which pair is higher?</p>
+<p><img class="size-full wp-image-34 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-3.png" alt="pusoy-dos-clubs-3" width="40" height="50"><img class="size-full wp-image-47 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-3.png" alt="pusoy-dos-diamonds-3" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>OR</p>
+<p><img class="size-full wp-image-73 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-spades-3.png" alt="pusoy-dos-spades-3" width="40" height="50"><img class="size-full wp-image-60 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-hearts-3.png" alt="pusoy-dos-hearts-3" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Answer: The first pair with the diamonds is higher.<br>
+<img class="size-full wp-image-34 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-3.png" alt="pusoy-dos-clubs-3" width="40" height="50"><img class="size-full wp-image-47 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-3.png" alt="pusoy-dos-diamonds-3" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<blockquote><p><strong>Triples (three-of-a-kind)</strong></p></blockquote>
+<p>The lowest triple of 333’s</p>
+<p><img class="size-full wp-image-34 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-3.png" alt="pusoy-dos-clubs-3" width="40" height="50"><img class="size-full wp-image-73 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-spades-3.png" alt="pusoy-dos-spades-3" width="40" height="50"><img class="size-full wp-image-60 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-hearts-3.png" alt="pusoy-dos-hearts-3" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The highest three of a kind&nbsp;is of 222’s</p>
+<p><img class="size-full wp-image-72 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-spades-2.png" alt="pusoy-dos-spades-2" width="40" height="50"><img class="size-full wp-image-59 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-hearts-2.png" alt="pusoy-dos-hearts-2" width="40" height="50"><img class="size-full wp-image-46 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-2.png" alt="pusoy-dos-diamonds-2" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<blockquote><p><strong>Five Cards</strong></p></blockquote>
+<p><strong>Straight</strong></p>
+<p>A straight is a five card hand made up of 5 consecutive single cards (i.e. 3,4,5,6,7) The ranking goes off the highest card in the straight.</p>
+<p>The lowest straight is 2,3,4,5,6</p>
+<p><img class="size-full wp-image-33 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-2.png" alt="pusoy-dos-clubs-2" width="40" height="50"><img class="size-full wp-image-73 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-spades-3.png" alt="pusoy-dos-spades-3" width="40" height="50"><img class="size-full wp-image-35 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-4.png" alt="pusoy-dos-clubs-4" width="40" height="50"><img class="size-full wp-image-62 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-hearts-5.png" alt="pusoy-dos-hearts-5" width="40" height="50"><img class="size-full wp-image-37 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-6.png" alt="pusoy-dos-clubs-6" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The highest straight is 10,J,Q,K,A</p>
+<p><img class="size-full wp-image-54 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-10.png" alt="pusoy-dos-diamonds-10" width="40" height="50"><img class="size-full wp-image-42 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-11.png" alt="pusoy-dos-clubs-11" width="40" height="50"><img class="size-full wp-image-82 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-spades-12.png" alt="pusoy-dos-spades-12" width="40" height="50"><img class="size-full wp-image-70 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-hearts-13.png" alt="pusoy-dos-hearts-13" width="40" height="50"><img class="size-full wp-image-58 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-ace.png" alt="pusoy-dos-diamonds-ace" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>What if two players both have a straight with the same highest card such a straight ending in 7’s, which straight is higher?</p>
+<p>Answer: The higher straight would be the straight with the high card with the higher suit so a 7clubs high straight is lower than a 7diamonds high straight.</p>
+<p><strong>Flush</strong></p>
+<p>The lowest flush is a club flush which can me made with any 5 cards of the same suit.</p>
+<p>For ex: 3-clubs, Q-clubs, 7-clubs, K-clubs, 5-clubs</p>
+<p><img class="size-full wp-image-34 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-3.png" alt="pusoy-dos-clubs-3" width="40" height="50"><img class="size-full wp-image-43 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-12.png" alt="pusoy-dos-clubs-12" width="40" height="50"><img class="size-full wp-image-38 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-7.png" alt="pusoy-dos-clubs-7" width="40" height="50"><img class="size-full wp-image-44 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-13.png" alt="pusoy-dos-clubs-13" width="40" height="50"><img class="size-full wp-image-36 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-5.png" alt="pusoy-dos-clubs-5" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The highest flush is a diamond flush.</p>
+<p>Q: If another player has a flush of the same suit, which flush would be higher?</p>
+<p>Player 1: Ace of hearts, 3-hearts, 8-hearts, 7-hearts, 9-hearts</p>
+<p>Player 2: 2 of hearts, King of hearts, 6-hearts, 4-hearts, 10-hearts</p>
+<p>Answer: Player 2, when two flushes are of the same suit, the higher of the flushes would be determined by the highest single card within that hand i.e. a king high flush is higher than a jack high flush.</p>
+<p><strong>Full House</strong></p>
+<p>A full house is a five card hand made up of three-of-a-kind and a pair i.e. 3,3,3,J,J or etc. The ranking goes off the triple (three-of-a-kind) so a full house of 3’s would be lower than a full house of 10’s. The lowest full house is a full house of 333’s and the highest full house is a full house of 222’s</p>
+<p><img class="size-full wp-image-38 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-7.png" alt="pusoy-dos-clubs-7" width="40" height="50"><img class="size-full wp-image-51 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-7.png" alt="pusoy-dos-diamonds-7" width="40" height="50"><img class="size-full wp-image-77 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-spades-7.png" alt="pusoy-dos-spades-7" width="40" height="50"><img class="size-full wp-image-68 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-hearts-11.png" alt="pusoy-dos-hearts-11" width="40" height="50"><img class="size-full wp-image-81 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-spades-11.png" alt="pusoy-dos-spades-11" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Quads (Four-of-a-kind)</strong></p>
+<p>A quad is four of a kind and a kicker or any card you choose (i.e. K,K,K,K,3)</p>
+<p>The lowest four of a kind is flush is 3333, and any single card. (i.e. 3,3,3,3,J)</p>
+<p>The highest four of a kind is 2222, and any single card. (i.e. 2,2,2,2,5)</p>
+<p><img class="size-full wp-image-82 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-spades-12.png" alt="pusoy-dos-spades-12" width="40" height="50"><img class="size-full wp-image-56 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-12.png" alt="pusoy-dos-diamonds-12" width="40" height="50"><img class="size-full wp-image-69 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-hearts-12.png" alt="pusoy-dos-hearts-12" width="40" height="50"><img class="size-full wp-image-43 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-clubs-12.png" alt="pusoy-dos-clubs-12" width="40" height="50"><img class="size-full wp-image-58 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-ace.png" alt="pusoy-dos-diamonds-ace" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Straight Flush</strong></p>
+<p>The lowest straight flush is 2,3,4,5,6,7</p>
+<p>The highest straight flush is A,K,Q,J,10</p>
+<p>The highest straight flush is a diamond flush.</p>
+<p><img class="size-full wp-image-54 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-10.png" alt="pusoy-dos-diamonds-10" width="40" height="50"><img class="size-full wp-image-55 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-11.png" alt="pusoy-dos-diamonds-11" width="40" height="50"><img class="size-full wp-image-56 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-12.png" alt="pusoy-dos-diamonds-12" width="40" height="50"><img class="size-full wp-image-57 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-13.png" alt="pusoy-dos-diamonds-13" width="40" height="50"><img class="size-full wp-image-58 alignleft" src="http://www.pusoydos.com/wp-content/uploads/2016/03/pusoy-dos-diamonds-ace.png" alt="pusoy-dos-diamonds-ace" width="40" height="50"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Q: If another player has a straight flush of the same suit, which flush would be higher?</p>
+<p>Player 1: Ace of hearts, King of&nbsp;hearts, Queen of&nbsp;hearts, Jack of&nbsp;hearts, 10 of&nbsp;hearts</p>
+<p>Player 2: 9&nbsp;of&nbsp;hearts, 8&nbsp;of hearts, 7&nbsp;of hearts, 6 of&nbsp;hearts, 5 of&nbsp;hearts</p>
+<p>Answer: Player 1, when two flushes are of the same suit- &nbsp;even Straight flushes, the higher of the flushes would be determined by the highest single card within that hand i.e. Ace&nbsp;high flush is higher than a jack high flush. A Royal Flush is a A,K,Q,J,10 straight flush.</p>
+<p><strong>Rounds</strong></p></blockquote>
+<p>Who goes first?</p>
+<p>The lowest card goes first which is the 3 of clubs. However the 3 of clubs can be played within a combination of cards i.e. as a single, within a pair of 3’s, as a triple 333’s, or within any five card hand.</p>
+<p>Play or Pass</p>
+<p><strong>The Rotation</strong></p>
+<p>The rotation of turns as in poker goes clockwise (the player to your immediate left would play their cards after yours.</p>
+<p><strong>To Drop a Card(s)</strong></p>
+<p>In order to drop a card during your turn, the card combination must be higher than the one currently in play (the card combination played before you), so if you played a single 3, I’d have to play a higher single if I wanted to drop a card.</p>
+<p><strong>Passing</strong></p>
+<p>If you don’t have any card higher than the one in play or if you just want to save a card for another turn, you can pass. When you pass the turn transfers to the next player to your left. Passing only applies for the duration of that card. So if Idropped a 3 of clubs, you dropped King of diamonds, player 3 passed, and if player 4 beats it with a Ace of clubs. I could drop a 2 of spades.</p>
+<p>What happens if everyone passes on my card?</p>
+<p>You now have control. You can drop any combination of cards that you like.</p>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container">
+  <button type="button" class="justify-content-center btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Game Rules
+  </button>
+<!-- <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 style="text-align: center;">Welcome to Posoy Dos Game</h1>
+  <button type="button" class="justify-content-center btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Rules
+  </button>
+  </div> -->
+</div>
+
+
 <canvas id="gameCanvas" width="1450" height = "600"></canvas>
- 
-<div class = "playerText" id="player1" style="top:10px; left:1400px"><a href="rules.html" target="_blank">RULES</a></div> 
- 
+
+
+
+
 <div class="playerCard" id="pc1" onclick="selectCard(1);"></div>
 <div class="playerCard" id="pc2" onclick="selectCard(2);"></div>
 <div class="playerCard" id="pc3" onclick="selectCard(3);"></div>
@@ -34,17 +211,24 @@
 <div class = "playerCard" id="prev4"></div>
 <div class = "playerCard" id="prev5"></div>
 
-<div class = "playerText" id="player1" style="top:570px; left:230px">P1</div>
-<div class = "playerText" id="player2" style="top:300px; left:1450px">P2</div>
-<div class = "playerText" id="player4" style="top:300px; left:20px">P4</div>
-<div class = "playerText" id="player3" style="top:15px; left:700px">P3</div>
-<div class = "playerText" id="whosgo" style="top:15px; left:20px"></div>
+<!-- <div class = "playerText" id="player1" style="top:629px; left:184px">Player 1 <br><img src="./img/avatar.png"/ > </div>
+<div class = "playerText" id="player2" style="top:255px; left:1400px">Player 2 <br> <img src="./img/avatar.png"/ > </div>
+<div class = "playerText" id="player4" style="top:246px; left:200px">Player 4 <br> <img src="./img/avatar.png"/ > </div>
+<div class = "playerText" id="player3" style="top:15px; left:700px">Player 3<br> <img src="./img/avatar.png"/ > </div> -->
+<div class = "playerText" id="player1" style="top:629px; left:184px">Player 1 <br></div>
+<div class = "playerText" id="player2" style="top:255px; left:1400px">Player 2 <br></div>
+<div class = "playerText" id="player4" style="top:246px; left:200px">Player 4 <br></div>
+<div class = "playerText" id="player3" style="top:15px; left:700px">Player 3<br></div>
+<div class = "playerText" id="whosgo" style="top:100px; left:113px"></div><br>
+
 
 <div class="button" onclick="sortHand();" style="top: 520px; left: 1150px;">Sort</div>
 <div class="button" onclick="submitHand();" style="top: 565px; left: 1150px;">Play</div>
 <div class="button" onclick="pass();" style="top: 610px; left: 1150px;">Pass</div>
 <div class="button" onclick="AIgo();" style="top: 655px; left: 1150px;">Make AI Play</div>
 <div class="button" id="newgame" onclick="newGame();" style="top: 655px; left: 1300px; visibility: hidden">New game</div>
+
+
 
 <div id="preload">
    <img src="./img/1.png" width="1" height="1" alt="Image 01" />
@@ -99,7 +283,14 @@
    <img src="./img/50.png" width="1" height="1" alt="Image 01" />
    <img src="./img/51.png" width="1" height="1" alt="Image 01" />
    <img src="./img/52.png" width="1" height="1" alt="Image 01" />
-   
+
    </div>
+
+
+ </div>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>
