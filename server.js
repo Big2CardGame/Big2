@@ -32,8 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use("url", "route from ./routes/jsFile")
 // ie
 // app.use("/", "./routes/htmlRoutes")
-require("./routes/apiRoutes.js")(app);
-require("./routes/htmlRoutes.js")(app);
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

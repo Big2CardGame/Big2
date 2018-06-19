@@ -58,7 +58,6 @@ function newGame() {
 	playersHand=[]; oppHand1=[]; oppHand2 = []; oppHand3 = []; selectedHand = [];
 	CGScore1 =0; CGScore2=0; CGScore3=0; CGScore4=0;
 	shuffleAndDeal();
-	console.log("check to see if playersHand is in the game_db");
 	initDraw();
 	firstMove(); //first move is done automatically. Determine who has the 3 of clubs and plays it.
 	drawPlayersHand();
@@ -164,9 +163,12 @@ function shuffleAndDeal() {
 		oppHand3.push(deck[i+39]);
 	}
 	console.log(playersHand);
-	// first, take a hand JSON.stringify it
-	//JSON.stringify(playersHand)
-	handToDb(playersHand);
+	// this stores player's hands at the start of the game
+	// perhaps also delete what is already there? maybe drop table
+	handToDb(playersHand)
+	handToDb(oppHand1)
+	handToDb(oppHand2)
+	handToDb(oppHand3)
 }
 
 function shuffle(array) {
@@ -684,3 +686,34 @@ function updateScores() {
 	elem4.innerHTML = ("P4");
 }
 
+function handToDb(playerHand) {
+	var handObject = {
+		hand: JSON.stringify(playerHand)
+	}
+	$.post("/api/player/", handObject, function () {
+		console.log('player hand saved');
+	});
+}
+
+function postToBoard(play) {
+	var boardObject = {
+		inPlay: JSON.stringify(play)
+	}
+	$.post("/api/board", boardObject, function() {
+		console.log("post to board successful");
+	})
+}
+
+// use this function to grab what is currenly in play on the board.
+function getFromBoard() {
+	$.get("/api/inPlay", data => {
+		return JSON.parse(data); 
+	})
+}
+
+// use this function to grab players hands from the db.
+function getPlayerHand() {
+	$.get("/api/allPlayers", data => {
+		return JSON.parse(data);
+	})
+}

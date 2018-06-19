@@ -13,34 +13,34 @@ var db = require("../models");
 //})
 module.exports = (app) => {
     // get request needed for player
-    app.get("/api/allPlayers", (res,req) => {
+    app.get("/api/allPlayers", (req,res) => {
         db.Player.findAll({})
         .then(players => {
-            res.json(JSON.parse(players));
+            res.json(players);
         })
     })
     // get request for board
-    app.get("/api/inPlay", (res,req) => {
+    app.get("/api/inPlay", (req,res) => {
         db.Board.findAll({})
         .then(board => {
-            res.json(JSON.parse(board))
+            res.json(board)
         })
     })
     // post request for player table
-    app.post("/api/player", (res,req) => {
+    app.post("/api/player", (req,res) => {
         console.log(req.body);
         db.Player.create({
-            hand: JSON.stringify(req.body.hand)
+            hand: req.body.hand
         })
         .then(player => {
             res.json(player);
         })
     })
     // post request for board table 
-    app.post("/api/board", (res,req) => {
+    app.post("/api/board", (req,res) => {
         // code here to "post" a player move to the "board"
         db.Board.create({
-            inPlay: JSON.stringify(req.body.inPlay)
+            inPlay: req.body.inPlay
         })
         .then(board => {
             res.json(board)
