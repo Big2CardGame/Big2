@@ -686,6 +686,7 @@ function updateScores() {
 	elem4.innerHTML = ("P4");
 }
 
+// this function takes an array (a players hand) and pushes it to the db.
 function handToDb(playerHand) {
 	var handObject = {
 		hand: JSON.stringify(playerHand)
@@ -695,6 +696,7 @@ function handToDb(playerHand) {
 	});
 }
 
+// this takes the most recent play to the board and stores it to the db
 function postToBoard(play) {
 	var boardObject = {
 		inPlay: JSON.stringify(play)
