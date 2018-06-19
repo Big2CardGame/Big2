@@ -25,7 +25,7 @@ var oppCardShift = 25;
 var finishedDealing = 0;
 var passCounter = 0;
 var backOfCard = new Image();
-backOfCard.src = "./img/cardBack.png";
+backOfCard.src = "./img/cardback.jpg";
 var count = 0;
 var plyrsGo;
 var dealFirst = 1;
