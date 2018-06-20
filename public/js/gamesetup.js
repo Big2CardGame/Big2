@@ -64,7 +64,8 @@ function newGame() {
 	updatePlyrsGo();
 }
 
-function firstMove() {
+// this function loops through every card in players hands to find the person with the 3 of clubs
+function firstMove() { 
 	var whoHas3D; //1,2,3 or 4.
 	for(var i=0; i<13; i++) {
 		if(playersHand[i]==1) {
@@ -155,7 +156,6 @@ function shuffleAndDeal() {
 	//do a "fisher-yates" shuffle on deck
 	shuffle(deck);
 	//Assign random hands to players
-	// NEED TO ADD CODE THAT PUSHES THESE DECKS TO THE DATABASE!
 	for(var i=0; i<13; i++) {
 		playersHand.push(deck[i]);
 		oppHand1.push(deck[i+13]);
@@ -164,11 +164,11 @@ function shuffleAndDeal() {
 	}
 	console.log(playersHand);
 	// this stores player's hands at the start of the game
-	// perhaps also delete what is already there? maybe drop table
-	handToDb(playersHand)
+	// perhaps also delete what is already there? 
+	/* handToDb(playersHand)
 	handToDb(oppHand1)
 	handToDb(oppHand2)
-	handToDb(oppHand3)
+	handToDb(oppHand3) */
 }
 
 function shuffle(array) {
@@ -218,6 +218,9 @@ function drawPrevHand() {
 		card = document.getElementById(cardNoId);
 		card.style.visibility = "hidden";
 	}
+	// the below function will push every play to the "Board" table in the database
+	// acts as a "save state" for the game. not realized in the game yet but a solid first step :)
+	postToBoard(previousHand)
 }
 		
 function drawPlayersHand() {
@@ -346,6 +349,7 @@ function setDiff(arr1,arr2) {
 	return out;
 }
 
+// this function is activated with the on click of the "play" button.
 function submitHand() {
 	if(gameFinished) {
 		alert("Game is over. Start a new game");
@@ -419,7 +423,10 @@ function submitHand() {
 						control = 1;
 					}
 					updatePlyrsGo();
-					if(playersHand.length==0) {win(1); finishGame(1);}
+					if(playersHand.length==0) {
+						win(1);
+						finishGame(1);
+					}
 					return;
 				}
 				alert("If you're here I've no idea what you did, but fair play");
@@ -698,6 +705,15 @@ function handToDb(playerHand) {
 
 // this takes the most recent play to the board and stores it to the db
 function postToBoard(play) {
+/* 	if (play.length < 2) {
+		var boardObject = {
+			inPlay: String(play[0])
+		};
+	} else {
+		var boardObject = {
+			inPlay: JSON.stringify(play)
+		};
+	} */
 	var boardObject = {
 		inPlay: JSON.stringify(play)
 	}
